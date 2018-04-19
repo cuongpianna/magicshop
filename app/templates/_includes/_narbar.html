@@ -1,0 +1,38 @@
+    <!--Navigation bar-->
+    <!-- Reference: W3Schools http://www.w3schools.com/bootstrap/bootstrap_navbar.asp-->
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand hidden-lg hidden-md" href="#"><span class="glyphicon glyphicon-home"></span></a>
+                    <a class="navbar-brand hidden-sm hidden-xs" href="#"><span id="logo" style="font-family: Aisha-script;color:#4f351c;">Company name</span></a>
+                </div>
+                <div class="collapse navbar-collapse" id="myNavbar">
+                    <ul class="nav navbar-nav">
+                        <li><a href="#">Appointments</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">About Us</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right navbar-collapse" style="font-size:calc(80% + 1vw); position: relative; top:2%;">
+                        <div class="dropdown">
+                            <span class="glyphicon glyphicon-cog dropdown-toggle" data-toggle="dropdown">if current_user.is_authenticated  Hi, current_user.first_name  else
+                            Options endif</span>
+                            <span class="caret"></span>
+                        <ul class="dropdown-menu">
+                                    <li><a href="#"><span class="glyphicon glyphicon-king"></span> Admin Interface</a></li>
+                                    <li><a href="#"><span class="glyphicon glyphicon-user"></span> MyAccount</a></li>
+                            <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+                            <li><a href="#"><span class="glyphicon glyphicon-user"></span> Register</a></li>
+                            <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                        </ul>
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+    <!-- End of navigation bar -->

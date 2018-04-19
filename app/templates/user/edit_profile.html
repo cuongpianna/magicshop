@@ -1,0 +1,60 @@
+{%extends 'index.html'%}
+
+{%block content%}
+    <div id="container">
+        <div class="row row1">>THÔNG TIN TÀI KHOẢN</div>
+    <div class="row row2">
+        <div class="col-md-3 col1">
+            <ul>
+                <li><a href="">Thông tin tài khoản</a></li>
+                <li><a href="{{url_for('auth.change_password')}}">Đổi mật khẩu</a></li>
+                <li><a href="{{url_for('user.user_orders')}}">Quản lý đơn hàng</a></li>
+                {%if current_user.role == 'admin' %}
+                    <li><a href="{{url_for('admin.index')}}">Trang quản trị</a></li>
+                {%endif%}
+                <li><a href="{{url_for('auth.logout')}}">Đăng xuất</a></li>
+
+            </ul>
+         </div>
+        <div class="col-md-9 col2">
+
+            <div class="text-center" style="padding-bottom: 15px;padding-top: 15px;">
+                <b style="font-size: 30px">Thông tin tài khoản</b>
+            </div>
+            <form action="" method="post" enctype = "multipart/form-data" class="col-md-8 offset-md-2">
+        {{form.hidden_tag()}}
+        <div class="form-group form-inline">
+            Địa chỉ: <br>
+            {{form.address(type='text',placeholder='Địa chỉ',class='form-control')}}
+            {% if form.address.errors %}
+            {% for error in form.address.errors %}
+                {{ error }}
+            {% endfor %}
+            {% endif %}
+        </div>
+        <div class="form-group form-inline">
+            Số điện thoại: <br>
+            {{form.phone_number(type='text',placeholder='Số điện thoại',class='form-control')}}
+            {% if form.phone_number.errors %}
+            {% for error in form.phone_number.errors %}
+                {{ error }}
+            {% endfor %}
+            {% endif %}
+        </div>
+        <div class="form-group form-inline">
+            Ảnh đại diện:  
+            <img src="{{url_for('static',filename='uploads/'+current_user.avartar)}}" style="width: 140px">
+            {{form.avartar()}}
+            {% if form.avartar.errors %}
+            {% for error in form.avartar.errors %}
+                {{ error }}
+            {% endfor %}
+            {% endif %}
+        </div>
+    <br>
+    <input type="submit" value="Lưu" class="btn btn-default">
+</form>
+        </div>
+    </div>
+    </div>
+{%endblock%}

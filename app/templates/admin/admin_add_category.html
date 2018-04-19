@@ -1,0 +1,28 @@
+{% extends 'admin_base.html' %}
+
+{% block content %}
+{% with messages = get_flashed_messages() %}
+              {% if messages %}
+              {% for message in messages %}
+              <div class="alert alert-warning alert-dismissible text-center" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+                  {{message}}
+              </div>
+                {% endfor %}
+              {% endif %}
+              {% endwith %}
+<form action="" method="post">
+    {{form.hidden_tag()}}
+    Loại sản phẩm: <br>
+    {{form.name(type='text',placeholder='Loại sản phẩm',class='form-control')}}
+    {% if form.name.errors %}
+        {% for error in form.name.errors %}
+                {{ error }}
+        {% endfor %}
+    {% endif %}
+    <br>
+    <input type="submit" value="Lưu">
+</form>
+{% endblock %}

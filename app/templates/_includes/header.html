@@ -1,0 +1,145 @@
+<!-- Header -->
+	<header class="header1">
+		<!-- Header desktop -->
+		<div class="container-menu-header">
+			<div class="topbar">
+				<div class="topbar-social">
+					<a href="#" class="topbar-social-item fa fa-facebook"></a>
+					<a href="#" class="topbar-social-item fa fa-instagram"></a>
+					<a href="#" class="topbar-social-item fa fa-pinterest-p"></a>
+					<a href="#" class="topbar-social-item fa fa-snapchat-ghost"></a>
+					<a href="#" class="topbar-social-item fa fa-youtube-play"></a>
+				</div>
+
+				<span class="topbar-child1">
+					Miễn phí vận chuyển quanh khu vực Hà Nội
+				</span>
+
+				<div class="topbar-child2">
+					<span class="topbar-email">
+						cuongpianna1996@gmail.com
+					</span>
+
+
+				</div>
+			</div>
+
+			<div class="wrap_header">
+				<!-- Logo -->
+				<a href="{{url_for('home.index')}}" class="logo">
+					<img src="{{url_for('static',filename='img/icons/logo.jpg')}}" alt="IMG-LOGO" style="width:70px;">
+				</a>
+
+				<!-- Menu -->
+				<div class="wrap_menu">
+					<nav class="menu">
+						<ul class="main_menu">
+							<li>
+								<a href="{{url_for('home.index')}}">Trang chủ</a>
+
+							</li>
+
+							<li>
+								<a href="product.html">Loại sản phẩm</a>
+								<ul class="sub_menu">
+									{%for c in g.categories%}
+									<li><a href="{{url_for('home.category',category=c.name)}}">{{c.name}}</a></li>
+									{%endfor%}
+								</ul>
+							</li>
+
+							<li class="sale-noti">
+								<a href="product.html">Blog</a>
+							</li>
+
+							<li>
+								<a href="cart.html">Liên hệ</a>
+							</li>
+
+							<li>
+								<a href="about.html">Về chúng tôi</a>
+							</li>
+						</ul>
+					</nav>
+				</div>
+
+				<!-- Header Icon -->
+				<div class="header-icons">
+					{%if current_user.is_authenticated%}
+					<ul id="menu" class="main_menu">
+						<li>
+							<a href="{{url_for('user.edit_profile')}}" class="header-wrapicon1 dis-block">
+								<img src="{{url_for('static',filename='img/icons/icon-header-01.png')}}" class="header-icon1" alt="ICON">
+								{{current_user.username}}
+							</a>
+						<ul id="submenu" class="sub_menu">
+							<li><a href="{{url_for('user.edit_profile')}}">Thông tin cá nhân</a></li>
+							<li><a href="{{url_for('auth.change_password')}}">Đổi mật khẩu</a></li>
+							<hr>
+							<li><a href="{{url_for('auth.logout')}}">Đăng xuất</a></li>
+						</ul>
+						</li>
+
+					</ul>
+
+					{%else%}
+					<a href="{{url_for('auth.login')}}">Đăng nhập</a>
+					{%endif%}
+
+					<span class="linedivide1"></span>
+
+					<div class="header-wrapicon2">
+						<img src="{{url_for('static',filename='img/icons/icon-header-02.png')}}" class="header-icon1 js-show-header-dropdown" alt="ICON">
+						<span class="header-icons-noti">{{g.number}}</span>
+
+						<!-- Header cart noti -->
+						<div class="header-cart header-dropdown">
+							<ul class="header-cart-wrapitem">
+								{%for o in g.order%}
+								<li class="header-cart-item">
+									<div class="header-cart-item-img">
+										<img src="{{url_for('static',filename='uploads/'+o['image'])}}" alt="IMG">
+									</div>
+
+									<div class="header-cart-item-txt">
+										<a href="#" class="header-cart-item-name">
+											{{o['name']}}
+										</a>
+
+										<span class="header-cart-item-info">
+											{{o['quantity']}} x {{o['price']}}
+										</span>
+									</div>
+								</li>
+								{%endfor%}
+
+								
+							</ul>
+
+							<div class="header-cart-total">
+								Tổng tiền: {{g.total_cost}}
+							</div>
+
+							<div class="header-cart-buttons">
+								<div class="header-cart-wrapbtn">
+									<!-- Button -->
+									<a href="{{url_for('home.cart')}}" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
+										Giỏ hàng
+									</a>
+								</div>
+
+								<div class="header-cart-wrapbtn">
+									<!-- Button -->
+									<a href="{{url_for('home.check_out')}}" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
+										Thanh toán
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+	</header>

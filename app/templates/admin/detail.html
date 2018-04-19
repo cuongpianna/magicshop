@@ -1,0 +1,41 @@
+{%extends  'admin_base.html'%}
+
+{%block content%}
+{% with messages = get_flashed_messages() %}
+              {% if messages %}
+              {% for message in messages %}
+              <div class="alert alert-warning alert-dismissible text-center" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+                  {{message}}
+              </div>
+                {% endfor %}
+              {% endif %}
+              {% endwith %}
+	<div class="col-md-10 offset-md-1">
+		<h2 class="text-center">Chi tiết đơn hàng</h2>
+		<table>
+			<tr style="border-bottom: 1px solid #DDD;height: 40px">
+				<th style="width: 450px">Sản phẩm</th>
+				<th style="width: 110px">Số lượng</th>
+				<th style="width: 120px">Giá</th>
+				<th style="width: 120px">Thành tiền</th>
+			</tr>
+			{%for d in details%}
+			<tr style="border-bottom: 1px solid #DDD;height: 40px">
+				<td>{{d.products.name}}</td>
+				<td>{{d.quantity}}</td>
+				<td>{{d.products.price}}</td>
+				<td>{{d.quantity*d.products.price}}</td>
+			</tr>
+			{%endfor%}
+		</table>
+		<h3 style="margin: 20px 30px;color: red" class="text-right">Tổng tiền:  
+			{{order.total_cost}}
+		</h3>
+	</div>
+	
+	
+
+{%endblock%}

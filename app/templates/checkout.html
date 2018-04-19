@@ -1,0 +1,72 @@
+{%extends 'index.html' %}
+
+{%block content%}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-8">
+                <h1 style="margin-bottom:50px">Thông tin nhận hàng</h1>
+                {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-warning alert-dismissible text-center" role="alert">
+                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                         <span aria-hidden="true">&times;</span>
+                    </button>
+                    {{message}}
+                </div>
+            {% endfor %}
+            {% endif %}
+            {% endwith %}
+                    <form action="" method="post">
+                        {{form.hidden_tag()}}
+                        <div class="form-group">
+                            <label for="">Địa chỉ nhận hàng</label>
+                            {{form.user_adress(class='form-control',placeholder="Địa chỉ nhận hàng")}}
+                            {% for error in form.user_adress.errors %}
+                            <span style="color: red;">{{error}}</span>
+                            {% endfor %}<br>
+                        </div>
+                        <div class="form-group">
+                            <label for="">Tin nhắn</label><br>
+                            {{form.message(class='form-control',rows = 5,type="textarea",placeholder="Hãy gửi cho chúng tôi tin nhắn của bạn")}}
+                            {% for error in form.message.errors %}
+                            <span style="color: red;">{{error}}</span>
+                            {% endfor %}<br>
+                        </div>
+                        <div class="form-group text-right">
+                            <input type="submit" value="Thanh toán" class="btn btn-success">
+                        </div>
+                </form>
+            </div>
+            <div class="col-md-4">
+                    <div class="checkout" style="background-color:#f2f2f2;padding:25px 20px">
+                        <h2 class="text-center">
+                        Thông tin đơn hàng
+                        </h2>
+                    <div class="" style="margin-top:20px">
+                        {%for o in g.order%}
+                                <div class="row" style="padding:8px 0 8px 0;border-bottom:1px solid #CCCCCC">
+                                    <div class="col-md-8">
+                                        {{o['name']}}   x   {{o['quantity']}}
+                                    </div>
+                                    <div class="col-md-4">
+                                        {{o['subtotal']}}
+                                    </div>
+                                </div>
+
+                        {%endfor%}
+
+                    </div>
+                        <div class="row" style="padding:20px 0 2px 0">
+                            <div class="col-md-8">
+                                <h3>Tổng tiền</h3>
+                            </div>
+                            <div class="col-md-4">
+                                {{g.total_cost}}
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+{%endblock%}

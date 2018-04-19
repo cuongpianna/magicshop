@@ -1,0 +1,59 @@
+{%extends 'admin_base.html'%}
+
+{%block content%}
+{% with messages = get_flashed_messages() %}
+              {% if messages %}
+              {% for message in messages %}
+              <div class="alert alert-warning alert-dismissible text-center" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+                  {{message}}
+              </div>
+                {% endfor %}
+              {% endif %}
+              {% endwith %}
+    <form action="" method="post" enctype = "multipart/form-data">
+    {{form.hidden_tag()}}
+    Loại sản phẩm: <br>
+    {{form.cagetory(class='form-control')}}
+    {% if form.cagetory.errors %}
+        {% for error in form.cagetory.errors %}
+                {{ error }}
+        {% endfor %}
+    {% endif %}
+    <br>
+        Tên sản phẩm: <br>
+    {{form.name(placeholder='Tên sản phẩm',class='form-control')}}
+    {% if form.name.errors %}
+        {% for error in form.name.errors %}
+                {{ error }}
+        {% endfor %}
+    {% endif %}
+    <br>
+        Giá: <br>
+    {{form.price(class='form-control')}}
+    {% if form.price.errors %}
+        {% for error in form.price.errors %}
+                {{ error }}
+        {% endfor %}
+    {% endif %}
+        Ảnh: <br>
+    {{form.image(class='form-control')}}
+    {% if form.image.errors %}
+        {% for error in form.image.errors %}
+                {{ error }}
+        {% endfor %}
+    {% endif %}
+         Mô tả: <br>
+    {{form.description(class='form-control')}}
+    {% if form.description.errors %}
+        {% for error in form.description.errors %}
+                {{ error }}
+        {% endfor %}
+    {% endif %}
+    <br>
+    <br>
+    <input type="submit" value="Lưu">
+</form>
+{%endblock%}

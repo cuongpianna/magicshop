@@ -1,0 +1,77 @@
+{%extends 'index.html'%}
+{%block content%}
+<div class="row">
+{% include '_includes/sidebar.html' %}
+    <div class="col-sm-6 col-md-8 col-lg-9 p-b-50">
+					<!--  -->
+					<div class="flex-sb-m flex-w p-b-35">
+						<div class="flex-w">
+							<div class="flex-w">
+							<h2>{{category}}</h2>	
+						</div>
+						</div>
+
+						
+					</div>
+
+					<!-- Product -->
+					<div class="row">
+						{%if pl%}
+                        {%for p in pl.items%}
+                            <div class="col-sm-12 col-md-6 col-lg-4 p-b-50">
+							<!-- Block2 -->
+							<div class="block2">
+								<div class="block2-img wrap-pic-w of-hidden pos-relative block2-labelnew">
+									<img src="{{url_for('static',filename='uploads/'+p.image)}}" alt="IMG-PRODUCT" style="height:80%">
+
+									<div class="block2-overlay trans-0-4">
+										<a href="#" class="block2-btn-addwishlist hov-pointer trans-0-4">
+											<i class="icon-wishlist icon_heart_alt" aria-hidden="true"></i>
+											<i class="icon-wishlist icon_heart dis-none" aria-hidden="true"></i>
+										</a>
+
+										<div class="block2-btn-addcart w-size1 trans-0-4">
+											<!-- Button -->
+											<a href="{{url_for('home.add_to_cart',id=p.id)}}">
+											<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
+												Thêm vào giỏ
+											</button>
+											</a>
+										</div>
+									</div>
+								</div>
+
+								<div class="block2-txt p-t-20">
+									<a href="{{url_for('home.product_detail',id=p.id)}}" class="block2-name dis-block s-text3 p-b-5">
+										{{p.name}}
+									</a>
+
+									<span class="block2-price m-text6 p-r-5">
+										{{p.price}}
+									</span>
+								</div>
+							</div>
+						</div>
+                        {%endfor%}
+                        {%else%}
+                        	<h2>Không có sản phẩm nào</h2>
+                        {%endif%}
+
+
+					<!-- Pagination -->
+					<div class="pagination flex-m flex-w p-t-26">
+							{%for page in pl.iter_pages(left_edge=1)%}
+							{%if page%}
+								{%if page_num == page %}
+									<a href="" class="item-pagination flex-c-m active-pagination">{{page}}</a>
+								{%else%}
+									<a href="" class="item-pagination flex-c-m">{{page}}</a>
+								{%endif%}
+							{%else%}
+							...
+							{%endif%}
+						{%endfor%}
+					</div>
+				</div>
+</div>
+{%endblock%}

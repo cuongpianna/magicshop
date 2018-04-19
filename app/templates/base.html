@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      {% if title %}
+      <title>{{ title }} - Blog</title>
+      {% else %}
+      <title>Shop</title>
+      {% endif %}
+	  {% block styles %}
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+	  <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+	  <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+      <link href="{{ url_for('static', filename='bootstrap.min.css') }}" rel="stylesheet">
+      <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+	  <link rel="stylesheet" href="{{ url_for('static', filename='css/fontawesome.min.css') }}">
+
+
+      <meta charset="UTF-8">
+	  {% endblock %}
+
+  </head>
+  <body>
+  <!-- Header -->
+	{%include '_includes/header.html'%}
+  <!--end header-->
+
+  <!--Slider-->
+    {%include '_includes/slider.html'%}
+  <!--end silder-->
+
+  <!--Content-->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-6 col-md-4 col-lg-3 p-b-50">
+                {%include '_includes/sidebar.html'%}
+            </div>
+            <div class="col-sm-6 col-md-8 col-lg-9 p-b-50">
+                {%block content%}
+                {%endblock%}
+            </div>
+        </div>
+    </div>
+    <!--end of content-->
+    {% block scripts %}
+    <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/floatButton.js') }}"></script>
+        <script type="text/javascript" src="{{url_for('static',filename='js/bootstrap.min.js')}}"></script>
+	  <script src ="{{url_for('static',filename='js/jquery.min.js')}}" ></script>
+
+    {% endblock %}
+  </body>
+</html>

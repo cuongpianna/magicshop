@@ -1,0 +1,101 @@
+{% extends 'admin_base.html' %}
+
+{%block content%}
+{% with messages = get_flashed_messages() %}
+              {% if messages %}
+              {% for message in messages %}
+              <div class="alert alert-warning alert-dismissible text-center" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+                  {{message}}
+              </div>
+                {% endfor %}
+              {% endif %}
+              {% endwith %}
+    <table class="table row-border display" cellspacing="0px" id="example">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Tài khoản</th>
+                <th>Email</th>
+                <th>Địa chỉ</th>
+                <th>Số điện thoại</th>
+                <th>Ảnh đại diện</th>
+                <th>Loại tài khoản</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            {% for u in users %}
+                <tr>
+                    <td>{{u.id}}</td>
+                    <td><a href="#">{{ u.username }}</a></td>
+                    <td>{{u.email}}</td>
+                    <td>{{u.address}}</td>
+                    <td>{{u.phone_number}}</td>
+                    <td><img src="{{url_for('static',filename='uploads/'+u.avartar)}}" style="width: 40px"></td>
+                    <td>{{u.role}}</td>
+                    <td>
+                        <span class="actions">
+                            <a href="#" title="Xóa tài khoản?" onclick="return confirm('Xóa tài khoản?')"><i class="fa fa-trash" aria-hidden></i></a>
+                             <a href="#" title="Cập nhật tài khoản?" onclick="return confirm('Cập nhật tài khoản?')"><i class="fas fa-sync" aria-hidden></i></a>
+                        </span>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+  <script>
+  $(document).ready(function () {
+            var table = $('#example').DataTable({
+                lengthMenu: [[10, 20, 50, 100, 200, -1], [10, 20, 50, 100, 200, 'Все']],
+                dom: 'Bftlp',
+                buttons: [
+                    {
+                        text: 'Thêm tài khoản',
+                        action: function (e, dt, node, config) {
+                            window.open("users/add", "_self");
+                        }
+                    },
+                    {
+                        extend: 'csv',
+                        text: 'CSV'
+                    },
+                    {
+                        extend: 'excel',
+                        text: 'MS EXCEL'
+                    },
+                    {
+                        extend: 'pdf',
+                        text: 'PDF'
+                    },
+                    {
+                        extend:'print',
+                        text:'In'
+                    }
+                ],
+                colReorder: true,
+                fixedHeader: true,
+                order: [ 0, 'asc' ],
+                stateSave: true,
+                paginationType: 'full_numbers',
+                paging: true,
+                language: {
+                    lengthMenu: "Số bản ghi _MENU_",
+                    zeroRecords: "Không tìm thấy bản ghi",
+                    info: "Số bản ghi",
+                    infoEmpty: "",
+                    infoFiltered: "",
+                    loadingRecords: "Đang tải...",
+                    processing: "Vui lòng đợi...",
+                    search: "Tìm kiếm:",
+                    paginate: {
+                        first: "Trang đầu",
+                        last: "Trang cuối",
+                        next: "Trang sau",
+                        previous: "Trang trước"
+                    }
+                }
+            });
+        });
+  </script>
+{%endblock%}

@@ -1,0 +1,33 @@
+#submenu{
+    background-color:#EEEEEE;
+    width:170px;
+    height:auto;
+    left:-50px;
+    top:55px;
+    line-height:1;
+}
+
+#submenu li{
+    height:30px
+    line-height:30px;
+}
+
+#submenu a{
+    font-size:16px;
+    color:black;
+}
+#submenu a:hover{
+    color:red;
+}
+
+#submenu hr{
+    height:3px;
+
+}
+
+
+
+
+
+
+

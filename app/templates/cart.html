@@ -1,0 +1,35 @@
+
+
+
+{% block content %}
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Tên sản phẩm</th>
+            <th>Số lượng</th>
+            <th>Giá</th>
+            <th>Tổng</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        {% for melon in order %}
+
+        <tr>
+            <td>{{ melon["name"] }} </td>
+            <td> {{melon["quantity"]}} </td>
+            <td>{{ melon["price"] }}</td>
+            <td>${{ melon["subtotal"]}} </td>
+        </tr>
+
+        {% endfor %}
+
+        </tbody>
+    </table>
+
+    <h3>Total: {{total_cost}}</h3>
+
+    <a href="/checkout" class="btn btn-large btn-primary">Check Out</a>
+
+{% endblock %}
